@@ -5,7 +5,7 @@ import {AccountsService} from "./account.service";
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AccountsService]
+
 })
 export class AppComponent {
   accounts: { name: string, status: string }[] = [];

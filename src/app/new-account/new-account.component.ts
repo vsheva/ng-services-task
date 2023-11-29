@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoggingService} from "../logging.service";
 import {AccountsService} from "../account.service";
 
@@ -7,12 +7,9 @@ import {AccountsService} from "../account.service";
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
   //providers: [{ provide: LoggingService, useClass: LoggingService}]
-  providers: [LoggingService, AccountsService]
+  //providers: [LoggingService]
 })
 export class NewAccountComponent {
-  @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
-
- private loggingService
 
   //it automatically create an instance of LoggingService
 
@@ -22,7 +19,7 @@ export class NewAccountComponent {
  }
 
   onCreateAccount(accountName: string, accountStatus: string) {
-    this.loggingService.logStatusChange(accountStatus);
+    //this.loggingService.logStatusChange(accountStatus);
     this.accountsService.addAccount(accountName, accountStatus)
 
   }
