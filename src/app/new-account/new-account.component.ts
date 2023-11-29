@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {LoggingService} from "../logging.service";
 
 @Component({
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
+  //providers: [{ provide: LoggingService, useClass: LoggingService}]
   providers: [LoggingService]
 })
 export class NewAccountComponent {
@@ -12,8 +13,11 @@ export class NewAccountComponent {
 
  private loggingService
 
- constructor(loggingService: LoggingService) {
+  //it automatically create an instance of LoggingService
+
+  constructor(loggingService: LoggingService) {
    this.loggingService = loggingService
+    //this.loggingService = inject(LoggingService); //!!!
  }
 
   onCreateAccount(accountName: string, accountStatus: string) {
@@ -23,7 +27,6 @@ export class NewAccountComponent {
     });
 
     this.loggingService.logStatusChange(accountStatus)
-    // const service = new LoggingService();
-    // service.logStatusChange(accountStatus)
+
   }
 }

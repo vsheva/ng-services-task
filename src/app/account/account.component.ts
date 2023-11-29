@@ -5,7 +5,8 @@ import {LoggingService} from "../logging.service";
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService]
+  // providers: [{ provide: LoggingService, useClass: LoggingTestService}]
+  providers: [LoggingService] //we say which type of service should be used in the places where this service is injected
 })
 export class AccountComponent {
   @Input() account: {name: string, status: string};
@@ -15,6 +16,7 @@ export class AccountComponent {
 
   private loggingService
 
+  //it automatically create an instance of LoggingService
   constructor(loggingService: LoggingService) {
     this.loggingService = loggingService
   }
@@ -23,7 +25,6 @@ export class AccountComponent {
 
   onSetTo(status: string) {
     this.statusChanged.emit({id: this.id, newStatus: status});
-    //console.log('A server status changed, new status: ' + status);
 
     this.loggingService.logStatusChange(status)
   }
